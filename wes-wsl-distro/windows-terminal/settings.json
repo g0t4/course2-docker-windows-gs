@@ -19,6 +19,9 @@
   // If enabled, formatted data is also copied to your clipboard
   "copyFormatting": false,
 
+  // equivalent to alt+enter
+  "launchMode": "fullscreen",
+
   // A profile specifies a command to execute paired with information about how it should look and feel.
   // Each one of them will appear in the 'New Tab' dropdown,
   //   and can be invoked from the commandline with `wt.exe -p xxx`
@@ -30,7 +33,8 @@
           "font":{
               "size": 26,
               "face": "SauceCodePro NF"
-          }
+          },
+          "colorScheme": "wes-dark"
           // Put settings here that you want to apply to all profiles.
       },
       "list":
@@ -75,7 +79,31 @@
 
   // Add custom color schemes to this array.
   // To learn more about color schemes, visit https://aka.ms/terminal-color-schemes
-  "schemes": [],
+  "schemes": [
+      {
+          "background": "#23262E",
+          "black": "#535A6E",
+          "blue": "#039FD6",
+          "brightBlack": "#97A9CE",
+          "brightBlue": "#039FD6",
+          "brightCyan": "#03D6B8",
+          "brightGreen": "#A5F57E",
+          "brightPurple": "#9643EE",
+          "brightRed": "#F92672",
+          "brightWhite": "#EA03ED",
+          "brightYellow": "#FFE66D",
+          "cursorColor": "#C30998",
+          "cyan": "#03D6B8",
+          "foreground": "#CCB05C",
+          "green": "#8FD46D",
+          "name": "wes-dark",
+          "purple": "#9643EE",
+          "red": "#F0266F",
+          "selectionBackground": "#C30998",
+          "white": "#D402D7",
+          "yellow": "#FFE66D"
+      }
+  ],
 
   // Add custom actions and keybindings to this array.
   // To unbind a key combination from your defaults.json, set the command to "unbound".
