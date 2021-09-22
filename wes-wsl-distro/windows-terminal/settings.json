@@ -73,6 +73,10 @@
           {
               "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
               "name": "Ubuntu",
+              // docs: https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-general#starting-directory
+              // static starting dir - home of wes user
+              // remove this to go back to contextual starting directory
+              "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\wes",
               "source": "Windows.Terminal.Wsl"
           }
       ]
