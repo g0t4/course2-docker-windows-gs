@@ -20,7 +20,7 @@ wsl --set-default-version 2
 
 ```
 
-## Apps to Install
+## App Installs
 
 ```powershell
 
