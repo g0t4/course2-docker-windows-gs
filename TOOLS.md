@@ -43,4 +43,7 @@ winget install -e --id Microsoft.VisualStudioCode.Insiders
 # Visual Studio
 winget install -e --id Microsoft.VisualStudio.2022.Community-Preview
 
+# Browser
+winget install -e --id BraveSoftware.BraveBrowser
+
 ```
