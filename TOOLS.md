@@ -40,4 +40,7 @@ winget install -e --id Microsoft.VisualStudioCode
 # and/or:
 winget install -e --id Microsoft.VisualStudioCode.Insiders
 
+# Visual Studio
+winget install -e --id Microsoft.VisualStudio.2022.Community-Preview
+
 ```
