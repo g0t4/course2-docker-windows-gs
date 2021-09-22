@@ -43,7 +43,7 @@
               // Make changes here to the powershell.exe profile.
               "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
               "name": "Windows PowerShell",
-              "commandline": "powershell.exe",
+              "commandline": "powershell.exe -nologo",
               "hidden": false
           },
           {
@@ -54,7 +54,7 @@
               "hidden": false
           },
           {
-              "commandline": "pwsh.exe -nologo",
+              "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -nologo",
               "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
               "name": "PowerShell",
               "source": "Windows.Terminal.PowershellCore"
@@ -65,6 +65,7 @@
               "source": "Windows.Terminal.Azure"
           },
           {
+              "commandline": "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe -nologo", 
               "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
               "name": "PowerShell 7 Preview",
               "source": "Windows.Terminal.PowershellCore"
