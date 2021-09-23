@@ -2,9 +2,16 @@
 
 ```powershell
 
+# downloads of MSSQL 
+# https://my.visualstudio.com/Downloads?q=SQL%20Server%202017
+
 # SSMS alone
 winget install -e --id Microsoft.SQLServerManagementStudio
 
-# TODO image/container commands
+# AzureDataStudio (maybe)
+winget install -e --id Microsoft.AzureDataStudio
+winget install -e --id Microsoft.AzureDataStudio.Insiders
+
+# TODO image/container commands for running servers
 
 ```
