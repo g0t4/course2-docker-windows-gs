@@ -4,6 +4,10 @@
 
 ```powershell
 
+# general search
+winget search --id PostgreSQL
+
+# GUI (pgAdmin ~= SSMS)
 winget install -e --id PostgreSQL.pgAdmin
 
 # FYI, this is server (database) component - we'll use containers
