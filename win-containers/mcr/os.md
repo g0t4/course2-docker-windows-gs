@@ -2,7 +2,7 @@
 
 Some notes that might be helpful, not meant as a complete resource just some initial links to get started if you want to learn more.
 
-## base OS links / considerations4
+## base OS links / considerations
 
 - [Docker Hub overview of Windows Base OS Images](https://hub.docker.com/_/microsoft-windows-base-os-images)
     - *refer to this page and its links for access to latest and recommended base images & tags*
@@ -28,7 +28,14 @@ Some notes that might be helpful, not meant as a complete resource just some ini
 
 ## tags
 
-- `latest` - not used on the Windows base OS images, due to need for compatibility between `container` and `container host` (albeit less restrictive than initial releases of Windows Conatiners)
+- `OS builds` aka `new Windows release` / `version` ... 
+    - PERHAPS **`release version`** is a better way to refer to this:
+    - ie `1809` (2nd semi-annual release from 2018)
+    - nowadays LTSCs - ie `ltsc2019`
+- `Full OS Version` in numeric format is available too, i.e. `10.0.20348.282`
+
+- `latest` - April 2019 is no longer used (nor available) on the Windows base OS images
+    - due to need for compatibility between `container` and `container host` it's wise to specify the OS version (as image tag)
 - `ltsc` - [Long Term Support Channel](https://docs.microsoft.com/en-us/windows-server/get-started/servicing-channels-comparison#long-term-servicing-channel-ltsc)
 - `sac` - [Semi Annual Channel](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview)
     - emphasis on transitioning to LTSC from SAC model so you'll see more and more ltsc tags instead of semi-annuals (`20H1`,`20H2`,etc) and instead `ltsc2019` or `2019ltsc` no doubt in some repos :)
@@ -43,27 +50,42 @@ It helps to understand Windows Server the release candance and terminology as it
 
 ## Windows OS Versions
 
-- `docker image inspect {{image}}` 
+- `Major.Minor.Build.Revision`
+    - `Major` - `10` (even win 11 didn't bump this?!)
+    - `Minor` - `0`
+    - `Build` - updated when new versions of OS publisehd, confusing, yes,... version meaning a semi-annual release (or LTSC) 
+        - ie 1809,1904,2004,20H2,etc
+    - `Revision` - aka `patches` - updated when Windows Updates are applied
+- `Version` - separate of, but correlated to build numbers
 
-```ps1
-# inspect image (all details)
-docker image inspect --format "{{json .}}"  mcr.microsoft.com/dotnet/sdk | jq -C
-docker image inspect --format pretty  mcr.microsoft.com/dotnet/sdk | jq -C
+### Find a Container Host's OS Version
 
-# only retrieve image's OS Version:
-docker image inspect --format "{{json .OsVersion}}"  mcr.microsoft.com/dotnet/sdk | jq -C
+```cmd
 
-# os & os version
-docker image inspect --format "{{json .OsVersion}}{{json .Os}}"  mcr.microsoft.com/dotnet/sdk | jq -C
+cmd.exe /C ver
 
 ```
 
-- `Major.Minor.Build.Revision`
-    - `Major` -
-    - `Minor` -
-    - `Build` -
-    - `Revision` -
-- `Version` - separte of but correlated to build numbers
+More methods to [Query versions](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-2022%2Cwindows-10-21H1#querying-version)
+
+### Find an Image's OS Version
+
+```ps1
+
+# use jq to add pretty formatting and syntax highlighting to json output of docker commands
+choco install -y jq 
+
+# inspect image (all details)
+docker image inspect --format "{{json .}}" mcr.microsoft.com/dotnet/sdk | jq -C
+docker image inspect --format pretty mcr.microsoft.com/dotnet/sdk | jq -C
+
+# only retrieve image's OS Version:
+docker image inspect --format "{{json .OsVersion}}" mcr.microsoft.com/dotnet/sdk | jq -C
+
+# os & os version
+docker image inspect --format "{{json .OsVersion}}{{json .Os}}" mcr.microsoft.com/dotnet/sdk | jq -C
+
+```
 
 ## Isolation
 
@@ -71,10 +93,13 @@ docker image inspect --format "{{json .OsVersion}}{{json .Os}}"  mcr.microsoft.c
     - with `linux` we're usally talking about `process isolation` via `namespaces` with resource constraints placed via `cgroups`, `capabilities`, security profiles (ie `seccomp`)
         - though there are plenty of efforts to provide alternative isolations for Linux containers (notably `VM isolation`)
     - `Windows Containers` have **2 primary types of `isolation`**
-        - `hyper-v isolation` - aka `VM isolation` - a `lightweight`, `non-traditional VM` is used **per `container`** 
+        - `VM isolation` (concept)
+            - aka `Hyper-V Container`
+            - a `lightweight`, `non-traditional VM` is used **per `container`** 
             - `container` runs inside this `VM`
             - provides the greatest degreee of security via `hardware isolation`.
-        - `process isolation` 
+        - `process isolation` (concept)
+            - aka `Windows Server Container` b/c they use the `Windows Server` kernel
             - same concept as linux's most prevalent isolation
             - the container is a process on the host that's highly isolated
                 - imagine a wrapper around it (via the kernel) to hide other resources on the machine
@@ -106,7 +131,7 @@ Compatibility is a somewhat rapidly shifting subject. I believe Microsoft is pus
     - `Windows Server` defaults to `Process Isolation`
     - Specify the 
 
-- Hyper-V Isolation
+- `Hyper-V Isolation`
     - Given a VM is in use 
         - and each container has its own kernel
         - the `container host` OS version doesn't have to match `container`/`image` OS version
@@ -114,7 +139,7 @@ Compatibility is a somewhat rapidly shifting subject. I believe Microsoft is pus
         - `container host` OS version >= `image` OS version
         - Temporarily (only until `Win 11 GA`) `Windows 10 v 21H1` container hosts can run `Windows Server 2022` images using `Hyper-V isolation` and special `preview tags` that will be removed
             - I think this hints at future support for forward compat in Hyper-V (and why not at least this?!) 
-- Process Isolation
+- `Process Isolation` / `Windows Server Container`
     - Given containerized processes run on the `container host`'s `kernel`
         - it's imperative for `images` to contain `libraries`/`services` that can rely on a **stable** set of `kernel APIs` (`syscalls`)
     - Limitations
@@ -123,7 +148,13 @@ Compatibility is a somewhat rapidly shifting subject. I believe Microsoft is pus
             - No backwards nor forwards compatibility
             - And strict equality, even the `revision` had to match!
         - Starting with `Windows 10 version 2004` (circa SAC in 2020 ~April) can run containers with `Process Isolation`!
+        - Starting with `Windows Server 1809` the revisions can differ within a build
+            - TLDR: `container host` OS build == `image` OS build  (revisions can differ)
         - Starting with `Windows 11` and `Windows Server 2022` the `Revision` doesn't need to match, can run images based on older OS versions
+    - Caveat - Feb 2020
+        - change was made that affects both kernel and user mode components and if they don't match they won't work (not reliably) so make sure to not mix and match across this release (container host and image both must be before or after this release date 2020 2B (February))
+        - More here: https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t
+        - Won't matter if you're using newer images (which is wise for security's sake)
     - Forecasts
         - Long term I think the Windows Kernel APIs/syscalls will stabilize such that we have forward and backward compat with both Hyper-V and Process Isolation regardless if we use client vs server SKU.
         - I believe the emphasis on Containers and lightweight virtualization, specifically images for environment distirbuiton, have proven to be a motivator to stabilize the inner workings of the Windows Kernels and User Mode libraries/services, pushing MSFT in a good way that will be very valuable! And we'll see much more of it!
