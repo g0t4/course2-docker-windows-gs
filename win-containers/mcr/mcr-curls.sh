@@ -10,8 +10,12 @@ mcr_tag_ls_txt windows/nanoserver > windows.nanoserver.tags.txt
 mcr_tag_ls_txt windows/server > windows.server.tags.txt 
 mcr_tag_ls_txt windows/servercore > windows.servercore.tags.txt 
 
-# fwk images
+# fwk images (in decreasing order of dependence on each other)
 mcr_tag_ls_txt dotnet/sdk > dotnet.sdk.tags.txt 
+mcr_tag_ls_txt dotnet/aspnet > dotnet.aspnet.tags.txt 
+mcr_tag_ls_txt dotnet/runtime > dotnet.runtime.tags.txt 
+# runtime-deps provides basic dependencies to the runtime (listed to show relationships and to show tag differences)
+mcr_tag_ls_txt dotnet/runtime-deps > dotnet.runtime-deps.tags.txt 
 
 # app images
 mcr_tag_ls_txt mssql/server > mssql.server.tags.txt 
