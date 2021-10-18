@@ -25,8 +25,15 @@ function mcr_tag_ls_txt() {
 
 mcr_repo_ls_txt > repos.txt
 
+# base images (windows)
 mcr_tag_ls_txt windows > windows.tags.txt 
 mcr_tag_ls_txt windows/nanoserver > windows.nanoserver.tags.txt 
 mcr_tag_ls_txt windows/server > windows.server.tags.txt 
 mcr_tag_ls_txt windows/servercore > windows.servercore.tags.txt 
+
+# fwk images
+mcr_tag_ls_txt dotnet/sdk > dotnet.sdk.tags.txt 
+
+# app images
+mcr_tag_ls_txt mssql/server > mssql.server.tags.txt 
 
