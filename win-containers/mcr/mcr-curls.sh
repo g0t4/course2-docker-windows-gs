@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source mcr-cli.sh
+source ./mcr-cli.sh
 
 mcr_repo_ls_txt > repos.txt
 
