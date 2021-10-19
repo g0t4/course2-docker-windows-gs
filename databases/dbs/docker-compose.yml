@@ -1,13 +1,13 @@
-version: '3.9'
+version: 3.9 # deprecated in compose spec, now informational only, can remove
+
+
+
+
 
 services:
   mysql:
     # https://hub.docker.com/_/mysql
     image: mysql 
-#   ports:
-#     - "127.0.0.1:3306:3306"
-      # (optional) specify host IP(s) for the published port
-      # of course, host firewall plays a part too
     environment:
       MYSQL_ROOT_PASSWORD: supersecret
   ui:
@@ -15,6 +15,8 @@ services:
     image: adminer
     ports:
     - "127.0.0.1:8080:8080"
+      # (optional) specify host IP(s) for the published port
+      # of course, host firewall plays a part too
     environment:
       ADMINER_DEFAULT_SERVER: mysql # or pg, mongo (not OOB)
   pg:
@@ -25,45 +27,134 @@ services:
   mongo:
     # https://hub.docker.com/_/mongo
     image: mongo
-#   ports: "127.0.0.1:27017:27017"
-
-#
-# compare to docker cli:
-#
-# docker container run \
-#   -it \
-#   -p 127.0.0.1:3306:3306 \
-#   -e MYSQL_ROOT_PASSWORD=superseret \
-#   mysql 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #
-## setting (General -> Use Docker Compose V2)
+########### compare to docker cli (just for mysql scenario)
+#
+# docker container run -it -p 127.0.0.1:3306:3306 -e MYSQL_ROOT_PASSWORD=superseret mysql 
+#     # versus
+# docker compose up mysql
+#
+####### help
+#
+# docker compose --help 
+#   # subcommands primarily
+# docker compose ps --help
+# 
+# # compose spec: https://github.com/compose-spec/compose-spec
+# # v2/v3 compose file formats: https://docs.docker.com/compose/compose-file/compose-file-v3/
+#   # compose spec evolved from these
+# 
+####### setting (General -> Use Docker Compose V2)
+#
 # docker-compose --version
 # docker compose version
 #
-# docker compose up 
-#   # ~ -it by default
+######### up
+#
+# docker compose up  
+#   # attaches by default
 #   docker compose up --detach # -d 
+#   # compare:
+#     docker compose ps
+#     docker container ps
 #
-# docker compose exec db bash
+######### exec in to mysql cli
+#
+# docker compose exec mysql bash
 #   mysql -u root -p
-#   # provide password
-#   show databases;
-#   # etc
-#   exit # when done
+#     # provide password
+#     show databases;
+#     # etc
+#     exit
 #
-# docker compose start/stop
+######### pull images (can use a compose file to rapidly pull images and/or updates to images like a recipe)
+#
+# docker compose pull
+#
+########## manage/query state of resources
+#
+# docker compose create 
+#   # optionally can target subset of resources in compose file (ie services), for example:
+#     # limit to mysql service
+#       docker compose create mysql 
+#     # then, later:
+#       docker compose start mysql
+#   # up = create + start
+# 
+# docker compose start/stop/restart/kill
+# docker compose rm 
+#   # -s/--stop # stop running service(s) # prompt doesn't apply
+#   # -f/--force # no prompt to remove 
+# 
 # docker compose ps 
+# docker compose top
+#   # shows processes in each container, super cool!
+# docker compose images
+#
 # docker compose config
 #   docker compose config | bat -l yml
-# docker compose down # -rmv
 #
-# docker compose up --detach --remove-orphans
-
-# mongo:
-# dco exec mongo bash
+#### can query state w/o compose too, useful to learn what's going on
+#
+# docker container ps # -a
+# docker volume ls
+# docker image ls
+# docker network ls 
+#
+########## cleanup:
+#
+#   docker compose rm 
+#
+#   docker compose down   
+#     # down = stop + rm
+#       # down reverses up!
+#     # --remove-orphans
+#     # --rmi # remove images too
+#     # -v # remove both named and anonymous volumes
+# 
+#   docker compose up --detach --remove-orphans
+#     # useful to check `docker container ps -a` if making major changes and orphans linger
+#
+#   # normal cleanup applies too
+#     # notice names prefixed with project name (defaults to folder name where docker-compose.yml resides)
+#   docker container ps -a # check for all containers
+#   docker container prune
+#   docker system df # all resources
+#     # use with extreme caution:
+#       docker system prune 
+#       # I recommend - first learn underlying "prunes" (container prune, volume prune, etc) 
+#
+#
+########## projects
+#
+# # think multiple environments!
+#   # think of compose file as an "environment template"
+#   # you can manage multiple instances of a compose file's resources (services, networks, volumes, etc)!
+#   # project (name) parameterizes the entire compose file!
+#   # why? - perhaps manage several dev environments composed of a vast number of resources, easily managed w/ compose!
+#
+# docker compose --project-name/-p NAME ... # argument to compose, so provide whatever ... subcommands to target said project 
+#
+##### mongo
+# 
+# docker compose exec mongo bash
 #   mongo # open mongo cli
-#   show dbs;
-#   # etc
-# dco ps # when exec'd in
+#     show dbs;
+#     # etc
+#
