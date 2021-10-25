@@ -11,6 +11,11 @@
     // "redhat.vscode-yaml", // compose
     //
     // "ms-vscode.powershell", // powershell scripts
+    //
+    // notes for my demo env:
+    // "formulahendry.code-runner" // shell formatting
+    // "vscodevim.vim" // I like vim + vscode :)
+    // "esbenp.prettier-vscode"
   ],
   "unwantedRecommendations": []
 }
