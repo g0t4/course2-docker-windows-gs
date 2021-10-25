@@ -1,14 +1,12 @@
-# run nginx web container (simulate a running machine)
-docker container run -i -t -p 8080:80 --name web nginx
+# create nginx web container (simulate a running machine)
+docker container create --name web nginx
 
 # before
-curl localhost:8080 # returns default page
 docker container diff web # ≈empty + runtime state if testing
 # replace page
 docker container cp index.html web:/usr/share/nginx/html/index.html
 # after
 docker container diff web # + custom page
-curl localhost:8080 # returns custom page
 
 
 docker image ls # before
