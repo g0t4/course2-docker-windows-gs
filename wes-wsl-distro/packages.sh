@@ -11,5 +11,7 @@ sudo apt-get install -y \
   zsh
 
 # dive - image diffs
-wget https://github.com/wagoodman/dive/releases/download/v0.10.0/dive_0.10.0_linux_amd64.deb
-sudo apt install ./dive_0.10.0_linux_amd64.deb
+DIVE_VERSION="0.10.0"
+wget https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb
+sudo apt install -y ./dive_${DIVE_VERSION}_linux_amd64.deb
+# rm ./dive_${DIVE_VERSION}_linux_amd64.deb
