@@ -1,0 +1,16 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  "recommendations": [
+    // remote family of extensions (including WSL and Container - useful with Docker)
+    // NOT YET
+    // "ms-vscode-remote.vscode-remote-extensionpack",
+    //    "ms-vscode-remote.remote-wsl"
+    //    "ms-vscode-remote.remote-containers"
+    //
+    // "ms-azuretools.vscode-docker" // docker in general
+    // "redhat.vscode-yaml", // compose
+    //
+    // "ms-vscode.powershell", // powershell scripts
+  ],
+  "unwantedRecommendations": []
+}
