@@ -1,4 +1,4 @@
-set +x
+set -x
 
 # testing afterwards
 curl localhost:8081 # before (site offline)

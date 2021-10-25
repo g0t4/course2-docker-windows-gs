@@ -1,4 +1,4 @@
-set +x
+set -x
 
 # create nginx web container (simulate a running machine)
 docker container create --name web2 nginx
