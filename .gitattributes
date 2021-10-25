@@ -1,0 +1,17 @@
+## not yet - I want a demo of this before I blanket add it
+## set default to use lf on all files
+# * text=auto eol=lf
+# 
+## windows only files that need crlf:
+# *.{cmd,[cC][mM][dD]} text eol=crlf
+# *.{bat,[bB][aA][tT]} text eol=crlf
+#
+#
+
+
+#################
+# resources (for those of you that want to modify this)
+# man gitattributes
+# https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings
+# https://code.visualstudio.com/docs/remote/troubleshooting#_resolving-git-line-ending-issues-in-containers-resulting-in-many-modified-files
+
