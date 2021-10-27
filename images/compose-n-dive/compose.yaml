@@ -11,6 +11,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+# docker compose build mysite
 # docker compose run dive 
   # one-off run!
   # tab to right and Ctrl+U to hide unmodified
