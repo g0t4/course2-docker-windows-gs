@@ -1,0 +1,32 @@
+version: 3.9:
+
+services:
+  mysite:
+    image: nginx
+    build: ./mysite # build context (w/ Dockerfile)
+  dive:
+    image: wagoodman/dive # :latest implied
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    # maybe bind mount config of dive yaml
+    #environment:
+    #  CI: true
+
+
+## Links
+# Dive:
+#   Usage:
+#     KeyBindings: https://github.com/wagoodman/dive#keybindings
+#     Config: https://github.com/wagoodman/dive#ui-configuration
+#     CI: https://github.com/wagoodman/dive#ci-integration
+#     `dive build` insted of `docker build`
+#   Repo: https://github.com/wagoodman/dive
+#   Registr(ies):
+#     Hub: https://quay.io/wagoodman/dive
+#     Quay: (outdated) https://quay.io/wagoodman/dive
+#       - Shows securit scans though! older images are good to review to see that in action 
+#   Install: 
+#     ubuntu/WSL: wes-wsl-distro/packages.sh
+#     brew install dive
+#     choco install dive
+#     https://hub.docker.com/r/wagoodman/dive
