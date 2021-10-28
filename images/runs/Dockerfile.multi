@@ -1,0 +1,50 @@
+# syntax=docker/dockerfile:1
+
+FROM ubuntu
+
+RUN apt-get update
+
+RUN apt-get install -y bat
+
+RUN apt-get instal -y jq
+
+# RUN rm -rf /var/lib/apt/lists/*
+
+# ENTRYPOINT ["batcat", "--color", "always", "--plain"] 
+
+# ENV BAT_THEME=base16
+
+
+
+
+
+
+
+
+## Notes
+# - Dockerfile reference: https://docs.docker.com/engine/reference/builder
+
+### build
+# docker build --tag bat --file Dockerfile.multi .
+
+### run bat (hard way) on file inside its container
+# docker container run --rm -i bat \
+#   batcat --color always --plain --theme base16 /etc/hosts
+
+### observe intermediate containers! (w legacy builder)
+# docker events
+# DOCKER_BUILDKIT=0 docker build --tag bat2 --file Dockerfile.multi .
+#
+## run again after a change to this Dockerfile
+
+### optional (pipe to bat from host!) 
+# cat Dockerfile | \
+#   docker container run --rm -i bat \
+#   batcat --color always --plain --theme base16 \
+#   -l dockerfile
+
+
+
+### uncomment ENV for theme!
+# docker container run --rm -i bat /etc/hosts
+## (optional) modify piping dockerfile (drop 3rd line!)

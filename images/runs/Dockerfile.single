@@ -1,0 +1,46 @@
+# syntax=docker/dockerfile:1
+
+FROM ubuntu
+
+RUN apt-get update \
+  && apt-get install -y bat jq \
+  && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["jq", "-C"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Notes
+### build
+# docker build -t jq -f Dockerfile.single .
+
+### sample json:
+#   docker image inspect nginx
+
+### pipe to jq in container!
+# docker image inspect nginx \
+#     | docker container run --rm -i jq
+#
+### filter json 
+# ".[].GraphDriver"
+
+### sweep dcr under the rug!
+# alias jq="docker container run --rm -i jq"
+# 
+# jq --help 
+#
+# docker image inspect nginx | jq
+
+### cleanup 
+# docker image rm bat jq
+# docker image prune
