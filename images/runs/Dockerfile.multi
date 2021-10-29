@@ -10,9 +10,9 @@ RUN apt-get install -y jq
 
 # RUN rm -rf /var/lib/apt/lists/*
 
-# ENTRYPOINT ["batcat", "--color", "always", "--plain"] 
+ENTRYPOINT ["batcat", "--color", "always", "--plain"] 
 
-# ENV BAT_THEME=base16
+ENV BAT_THEME=base16
 
 
 
@@ -27,7 +27,7 @@ RUN apt-get install -y jq
 ### build
 # docker build --tag bat --file Dockerfile.multi .
 
-### run bat (hard way) on file inside its container
+### run bat (hard way - w/o ENV and ENTRYPOINT above)
 # docker container run --rm -i bat \
 #   batcat --color always --plain --theme base16 /etc/hosts
 
@@ -40,7 +40,6 @@ RUN apt-get install -y jq
 ### optional (pipe to bat from host!) 
 # cat Dockerfile | \
 #   docker container run --rm -i bat \
-#   batcat --color always --plain --theme base16 \
 #   -l dockerfile
 
 
