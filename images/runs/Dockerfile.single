@@ -20,12 +20,11 @@ ENTRYPOINT ["jq", "-C"]
 
 
 
-## Notes
 ### build
-# docker build -t jq -f Dockerfile.single .
+# docker build -t jq:s -f Dockerfile.single .
 
 ### sample json:
-#   docker image inspect nginx
+# docker image inspect nginx
 
 ### pipe to jq in container!
 # docker image inspect nginx \
