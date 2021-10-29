@@ -28,18 +28,18 @@ ENTRYPOINT ["jq", "-C"]
 
 ### pipe to jq in container!
 # docker image inspect nginx \
-#     | docker container run --rm -i jq
+#     | docker container run --rm -i jq:s
 #
 ### filter json 
 # ".[].GraphDriver"
 
 ### sweep dcr under the rug!
-# alias jq="docker container run --rm -i jq"
+# alias jq="docker container run --rm -i jq:s"
 # 
 # jq --help 
 #
 # docker image inspect nginx | jq
 
 ### cleanup 
-# docker image rm bat jq
+# docker image rm bat bat2 jq:s jq:h bat # ... 
 # docker image prune
