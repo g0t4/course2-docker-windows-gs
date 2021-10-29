@@ -8,7 +8,7 @@ RUN apt-get install -y bat
 
 RUN apt-get install -y jq
 
-# RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["batcat", "--color", "always", "--plain"] 
 
