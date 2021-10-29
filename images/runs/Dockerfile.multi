@@ -22,7 +22,13 @@ ENV BAT_THEME=base16
 
 
 ## Notes
-# - Dockerfile reference: https://docs.docker.com/engine/reference/builder
+#
+### Invaluable references for building images:
+# - Dockerfile ref: https://docs.docker.com/engine/reference/builder
+# - docker build ref: https://docs.docker.com/engine/reference/commandline/build/
+# - docker run ref: https://docs.docker.com/engine/reference/commandline/run/
+# - "best practices": https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+#    - what AND WHY, that's rare!
 
 ### build
 # docker build --tag bat --file Dockerfile.multi .
