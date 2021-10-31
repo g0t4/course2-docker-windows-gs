@@ -31,5 +31,7 @@ ENTRYPOINT ["jq", "-C"]
 #   https://www.docker.com/blog/introduction-to-heredocs-in-dockerfiles/
 #
 # dockerfile syntax docs:
-#   https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/syntax.md 
-#
+#   https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/syntax.md
+
+# wikipedia:
+#   https://en.wikipedia.org/wiki/Here_document
