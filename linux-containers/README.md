@@ -16,27 +16,32 @@ Hide legacy commands with DOCKER_HIDE_LEGACY_COMMANDS
 
 # NGINX
 docker container run --rm -it -p 8080:80 nginx
-Start http://localhost:8080
+open http://localhost:8080
 
 # Jenkins
 docker container run --rm -it -p 8080:8080 jenkins/jenkins
-Start http://localhost:8080
+open http://localhost:8080
 
 # TeamCity
 docker container run -rm -it -p 8080:8111 jetbrains/teamcity-server
-Start http://localhost:8080
+open http://localhost:8080
 
 ```
 
 ## .NET SDK
 
-At time of recording
-- `Current` = `.NET 5.0`
-  - docker image `latest` tag points to `5.0`
-- `LTS` = `.NET Core 3.1`
-- `Preview`/`rc` = `.NET 6.0`
+### Manually downloading
 
-Using a package manager (`winget`) to install the .NET SDK Preview:
+- [dot.net](https://dot.net)
+- Pick a version:
+  - At time of recording
+    - `Current` = `.NET 5.0`
+    - docker image `latest` tag points to `5.0`
+    - `LTS` = `.NET Core 3.1`
+    - `Preview`/`rc` = `.NET 6.0`
+    - Work on `7.0` began in dev branches of repos
+
+### Using a package manager (`winget`) to install the .NET SDK Preview
 
 ```shell
 winget install -e --id Microsoft.dotnetPreview
