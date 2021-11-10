@@ -4,8 +4,9 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app/src
 
 # generate sample code, easy way to test out latest template
-RUN dotnet new --name myapi --no-restore --output /app/src/ `
-  webapi --no-https 
+RUN dotnet new webapi `
+  --name myapi --no-restore --output /app/src/ `
+  --no-https 
 
 RUN dotnet restore
 
@@ -22,7 +23,18 @@ COPY --from=build-env /app/pub /app
 
 ENTRYPOINT ["dotnet","/app/myapi.dll"]
 
+
+
+
+
+
 ## NOTES
+#
+# docker build --tag webapi:nanoserver-ltsc2022 . 
+# docker container run --rm -it -p 8080:80 webapi:nanoserver-ltsc2022
+#   http://localhost:8080
+#   http://localhost:8080/weatherforecast
+#
 # - multi-stage build image choices
 #   - the two I use are explained nicely here:
 #   - https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-6.0#aspnet-core-docker-images
