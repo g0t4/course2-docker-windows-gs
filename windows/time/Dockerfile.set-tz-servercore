@@ -8,4 +8,4 @@ RUN Set-TimeZone 'Central Standard Time'
 # - 'US Eastern Standard Time'
 # - 'Pacific Standard Time'
 
-CMD (get-timezone).DisplayName; (get-date).ToShortTimeString(); hostname
+CMD hostname; (get-timezone).DisplayName; (get-date).ToShortTimeString();
