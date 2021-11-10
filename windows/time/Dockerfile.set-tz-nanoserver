@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+
+SHELL ["powershell","-command"]
+
+RUN Set-TimeZone 'Central Standard Time'
+
+CMD (get-timezone).DisplayName; (get-date).ToShortTimeString(); hostname
+
+
+
+
+
+
+
+# NOTE:  this is broken intentionally for a demo of base images

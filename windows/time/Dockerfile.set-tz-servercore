@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+# change the default shell to powershell (instead of CMD)
+SHELL ["powershell","-command"]
+
+RUN Set-TimeZone 'Central Standard Time'
+# further choices:
+# - 'US Eastern Standard Time'
+# - 'Pacific Standard Time'
+
+CMD (get-timezone).DisplayName; (get-date).ToShortTimeString(); hostname

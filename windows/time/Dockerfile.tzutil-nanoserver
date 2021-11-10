@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
+
+RUN tzutil /s "Central Standard Time"
+
+CMD hostname; tzutil /g; time /T; 
+
+
+
+
+
+
+
+# NOTE:  this is broken intentionally for a demo of base images
