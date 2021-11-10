@@ -2,4 +2,4 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 SHELL ["powershell","-command"]
 
-CMD (get-timezone).DisplayName; (get-date).ToShortTimeString(); hostname
+CMD hostname; (get-timezone).DisplayName; (get-date).ToShortTimeString();
