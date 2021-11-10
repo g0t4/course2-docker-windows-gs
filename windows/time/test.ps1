@@ -1,3 +1,5 @@
+Set-PSDebug -Trace 1
+
 # first check host timezone:
 hostname; (get-timezone).DisplayName; (get-date).ToShortTimeString();
 
@@ -20,3 +22,5 @@ docker container run --rm -it set-tz:servercore
 
 # check again
 hostname; (get-timezone).DisplayName; (get-date).ToShortTimeString();
+
+Set-PSDebug -Off
