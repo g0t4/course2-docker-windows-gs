@@ -10,12 +10,13 @@ RUN dotnet new webapi `
 
 RUN dotnet restore
 
-RUN dotnet publish --configuration Release --no-restore --no-self-contained `
+RUN dotnet publish `
+  --configuration Release --no-restore  --no-self-contained `
   --output /app/pub/
 
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-nanoserver-ltsc2022 AS runtime-env
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime-env
 
 WORKDIR /app
 
@@ -28,12 +29,8 @@ ENTRYPOINT ["dotnet","/app/myapi.dll"]
 
 
 
-## NOTES
-#
-# docker build --tag webapi:nanoserver-ltsc2022 . 
-# docker container run --rm -it -p 8080:80 webapi:nanoserver-ltsc2022
-#   http://localhost:8080
-#   http://localhost:8080/weatherforecast
+
+## Links / notes
 #
 # - multi-stage build image choices
 #   - the two I use are explained nicely here:
@@ -42,3 +39,4 @@ ENTRYPOINT ["dotnet","/app/myapi.dll"]
 # dotnet help
 # - https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish
 # - https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new 
+#
