@@ -16,7 +16,7 @@ RUN dotnet publish `
 
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-nanoserver-ltsc2022 AS runtime-env
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime-env
 
 WORKDIR /app
 
