@@ -72,6 +72,16 @@ docker container run --rm -i -t `
 
 ## 4 - get process isolation to work
 
+# docker manifest inspect mcr.microsoft.com/dotnet/aspnet:6.0 | jq -C
+# https://hub.docker.com/_/microsoft-dotnet
+# https://hub.docker.com/_/microsoft-dotnet-aspnet/
+  # this is our runtime env - search for 2022
+    # heading: Nano Server 2022 amd64 Tags
+# docker manifest inspect mcr.microsoft.com/dotnet/aspnet:6.0-nanoserver-ltsc2022 | jq -C
+# ** Note: both Server Core and Nano Server images are avail
+docker manifest inspect mcr.microsoft.com/windows/servercore:ltsc2022 | jq -C
+  # ** manifest list of 1 arch
+
 # update runtime-env: 
 # FROM .../aspnet:6.0-nanoserver-ltsc2022
 
