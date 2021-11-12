@@ -16,9 +16,11 @@ docker container run --rm -it `
 
 ## 2 - observing isolation outsie in
 
-# try to find process with myapi running
-Get-Process *myapi*
-# :(
+# try to find dotnet process (w/ myapi running)
+get-process *dotnet* 
+  # even if run as admin, nope 
+  # use procexp too (if desired)
+  # :(
 
 # show that it's hyper-v isolation
 # ** hcsdiag requires run as admin (wt)
@@ -97,8 +99,12 @@ curl localhost:8080/weatherforecast # w00t!
 
 ## 5 - successfully observe isolation outside in!
 
-Get-Process *myapi*
-# awesome!
+get-process *dotnet*
+  get-process *dotnet* | fl *
+    # run as admin
+    # run as not admin 
+    # you won't see myapi if not admin!
+# awesome! (some degree of isolating non-privileged processes on host too)
 
 # now! more isolation observation!
   Get-ComputeProcess 
