@@ -1,4 +1,4 @@
-version: 3.9 # deprecated in compose spec, now informational only, can remove
+
 
 services:
   mysql:
