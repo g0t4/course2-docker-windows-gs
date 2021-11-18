@@ -9,7 +9,6 @@ ps -AH -o ppid,pid,args
 
 wsl --system -d docker-desktop
 
-watch -d -n0.5 'ps -AH -ww -o pid,ppid,ipcns,mntns,netns,pidns,userns,utsns,args | grep  -v grep |  grep  4026532700' 
+watch -d -n0.5 'ps -AH -ww -o pid,ppid,ipcns,mntns,netns,pidns,userns,utsns,args | grep  -v grep |  grep  4026532700'
 
 ```
-

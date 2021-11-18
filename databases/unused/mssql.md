@@ -12,6 +12,4 @@ winget install -e --id Microsoft.SQLServerManagementStudio
 winget install -e --id Microsoft.AzureDataStudio
 winget install -e --id Microsoft.AzureDataStudio.Insiders
 
-# TODO image/container commands for running servers
-
 ```
