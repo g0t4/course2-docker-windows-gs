@@ -12,4 +12,5 @@ CMD hostname; (get-timezone).DisplayName; (get-date).ToShortTimeString();
 
 
 
-# NOTE:  this is broken intentionally for a demo of base images
+# NOTE:  this is broken intentionally for a demo of base images, it's important to factor into what is in any given base image when selecting which base to use.
+# - Even layers on top of the base layer can add additional framework functionality, like .NET 6/5 that make them a better choice if you are building a .NET 6 app and want a base layer with the runtime and/or build tools installed depending on use case. So this is like selecting a layer above the bottom most layers.
