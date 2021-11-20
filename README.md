@@ -2,8 +2,6 @@
 
 > 2nd Edition - Docker Getting Started on Windows Course!
 
-> FYI I am in the process of cleaning up and providing additional comments/notes/links to help you out, will be done by end of week.
-
 ## Modules
 
 Various commands and examples for each module of the course:
