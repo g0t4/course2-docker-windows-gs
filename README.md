@@ -13,6 +13,6 @@ Various commands and examples for each module of the course:
   - [wes-wsl-distro](./wes-wsl-distro) - my initial WSL2 distro setup
 - [Windows Containers](./win-containers/README.md)
   - [docker format output](./win-containers/docker.format.md) - overriding output format for several docker CLI commands
-- [Linux Images - scenarios](./images/)
-- [Windows Images - scenarios](./windows/)
+- [Linux Images](./images/)
+- [Windows Images](./windows/)
 - [Databases](./databases/)
