@@ -3,6 +3,16 @@
 # build
 docker build --tag myapi .
 
+# inspect what is built
+docker image ls 
+# assuming legacy builder still used for windows containers, then you can find intermediate stages (final layers)
+# and inspect them as follows:
+docker image history --no-trunc --format "{{json .}}" ImageID | jq -C
+  # filter to just CreatedBy
+  jq -C ".CreatedBy"
+# inspect second stage (runtime-env) layers:
+docker image history --no-trunc --format "{{json .}}" myapi | jq -C ".CreatedBy"
+
 # run
 docker container run --rm -it `
   -p 8080:80 `
@@ -87,16 +97,19 @@ docker container run --rm -i -t `
     
 ## 4 - get process isolation to work
 
+# check container host windows version (build #)
+cmd /c ver
+
 # look at all platforms that are supported for the 6.0 multi-arch tag:
   docker manifest inspect mcr.microsoft.com/dotnet/aspnet:6.0 | jq -C
 # pick a platform specific tag from the aspnet / dotnet Docker Hub repos 
-# - see their tag listings to guide your decision 
+# - see tag listings to guide your decision 
 # - https://hub.docker.com/_/microsoft-dotnet-aspnet/
 # - https://hub.docker.com/_/microsoft-dotnet
 #
 # for the demo in the course recording:
-  # want Nano Server base image
-  # want .NET built on top (and specifically aspnet runtime optimized image)
+  # want .NET 6 on top of Nano Server
+  # - specifically aspnet runtime optimized image
     # so, tag of 6.0-nanoserver-ltsc2022
   # for fun query the manifest of this platform specific tag:
   docker manifest inspect -v `
@@ -113,6 +126,16 @@ docker container run --rm -i -t `
 
 # NOW, update tag used in runtime-env: 
 # FROM .../aspnet:6.0-nanoserver-ltsc2022
+
+# get windows version targeted by image (built on top of)
+docker container run --rm -i -t `
+  --isolation hyperv `
+  --entrypoint cmd.exe `
+  myapi `
+  cmd /c ver
+
+# FYI if curious, windows versions here:
+https://en.wikipedia.org/wiki/Windows_10_version_history
 
 # rebuild image:
 #   optional: add tag to specify target architecture
