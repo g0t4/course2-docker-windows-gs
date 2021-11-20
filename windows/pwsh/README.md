@@ -1,3 +1,5 @@
+# PowerShell profile (completion features)
+
 - docker CLI COMPLETIONS
   - [docker/cli repo - powershell completions](https://github.com/docker/cli/tree/master/contrib/completion/powershell)
     - links to [DockerCompletion package](https://github.com/matt9ucci/DockerCompletion)

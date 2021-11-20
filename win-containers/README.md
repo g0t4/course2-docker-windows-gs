@@ -37,9 +37,6 @@ docker pull mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2022
 #   i.e. https://mcr.microsoft.com/v2/dotnet/sdk/tags/list
 #
 
-# name changes for dotnet image repos
-# https://github.com/dotnet/dotnet-docker/issues/2375
-
 # run IIS
 # note line continuation with ` backtick in powershell
 docker container run -d `
