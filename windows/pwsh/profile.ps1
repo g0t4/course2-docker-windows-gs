@@ -1,9 +1,15 @@
+# create a file $PROFILE
+# ie use vscode:
+code $PROFILE 
 
-# example pwsh profile
-# code $PROFILE 
+
+## remainder is example of powershell profile:
+# put the remainder of this file into the $PROFILE file
+# these are just things discussed in the course
 
 # Add docker tab completion to PowerShell
-# Install-Package DockerCompletions
+# make sure to install package (module) first: (one time install)
+# - Install-Package DockerCompletions
 Import-Module DockerCompletion
 
 # Trigger menu completion with tab key (override default tab complete)
