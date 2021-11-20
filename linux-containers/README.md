@@ -15,14 +15,22 @@ Hide legacy commands with DOCKER_HIDE_LEGACY_COMMANDS
 ```ps1
 
 # NGINX
+# https://hub.docker.com/_/nginx
 docker container run --rm -it -p 8080:80 nginx
 open http://localhost:8080
 
+# Apache
+# https://hub.docker.com/_/httpd 
+docker container run --rm -it -p 8080:80 httpd
+open http://localhost:8080
+
 # Jenkins
+# https://hub.docker.com/r/jenkins/jenkins
 docker container run --rm -it -p 8080:8080 jenkins/jenkins
 open http://localhost:8080
 
 # TeamCity
+# https://hub.docker.com/r/jetbrains/teamcity-server
 docker container run -rm -it -p 8080:8111 jetbrains/teamcity-server
 open http://localhost:8080
 

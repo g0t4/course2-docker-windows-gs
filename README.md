@@ -6,5 +6,8 @@
 
 ## Layout
 
+- Modules
+  - [Linux Containers](./linux-containers/README.md)
+
 - [Tools](./TOOLS.md) - some of the tools used in the course - how to setup/install
 - [docker format output](./docker.format.md) - overriding output format for several docker CLI commands
