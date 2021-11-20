@@ -40,3 +40,7 @@ ENTRYPOINT ["dotnet","/app/myapi.dll"]
 # - https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish
 # - https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new 
 #
+
+
+# Further .NET docker samples
+# https://gitnub.com/dotnet/dotnet-docker/blob/main/samples/dotnetapp/README.md
