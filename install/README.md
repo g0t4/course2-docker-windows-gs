@@ -1,5 +1,7 @@
 # Tools
 
+A few of the tools covered throughout the course. Especially some setup / installs from first module.
+
 ## WSL2 pre-requisites
 
 If you want to install WSL2 before DDfW, use the following commands. Otherwise, DDfW will enable the appropriate features but will still (currently) depend on Windows Update for the latest kernel.

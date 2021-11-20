@@ -4,11 +4,12 @@
 
 > FYI I am in the process of cleaning up and providing additional comments/notes/links to help you out, will be done by end of week.
 
-## Layout
+## Modules
 
-- Modules
-  - [Linux Containers](./linux-containers/README.md)
+Various commands and examples for each module of the course:
 
-- [wes-wsl-distro](./wes-wsl-distro) - my initial WSL2 distro setup
-- [Tools](./TOOLS.md) - some of the tools used in the course - how to setup/install
-- [docker format output](./docker.format.md) - overriding output format for several docker CLI commands
+- [Install](./install/README.md)
+- [Linux Containers](./linux-containers/README.md)
+  - [wes-wsl-distro](./wes-wsl-distro) - my initial WSL2 distro setup
+- [Windows Containers](./win-containers/README.md)
+  - [docker format output](./win-containers/docker.format.md) - overriding output format for several docker CLI commands
