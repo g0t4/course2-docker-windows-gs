@@ -73,20 +73,26 @@ docker container run --rm -i -t `
   # Fails (at least at time of recording, likely a fix arriving soonish is my guess)
     # see course for explanation 
     # docker: Error response from daemon: container aa5999950631f2fcea8603238b616dc6784bbb9edbcaf18aa20113fdcaf9a672 encountered an error during hcsshim::System::Start: failure in a Windows system call: The container operating system does not match the host operating system. (0xc0370101).
-  # don't fret if can't replicate problem, that means a fix might have been put into place when it comes to docker selection when using a multi-arch image (manifest list)
     # regardless if fixed, it is a good idea to target the architecture you will run under so as not to have surprises like this at runtime! 
   # long term MSFT will stabilize kernel mode / user mode ABI 
     # they have already stabilized ABI across revisions (patches)
-    # and going forward with WS2022/Win11 we have stability across build numbers (this is a preview feature so I'm sure some thinks need worked out and the extent of this stability - only time will tell us)
-    # my guess is they will continue to stabilize it so it's not much of a thought for you as an end user because this is a major pain point
+    # and going forward with WS2022/Win11 we have stability across build numbers 
+      # a preview feature 
+      # some things need worked out
+      # so, extent of stability, only time will tell!
+    # my guess
+      # MSFT will continue to stabilize
+      # until it's not much of a thought for you as an end user
+      # because this is a major pain point
     
 ## 4 - get process isolation to work
 
 # look at all platforms that are supported for the 6.0 multi-arch tag:
   docker manifest inspect mcr.microsoft.com/dotnet/aspnet:6.0 | jq -C
-# pick a platform specific tag from the aspnet / dotnet Docker Hub repos - see their tag listings to guide your decision 
-# https://hub.docker.com/_/microsoft-dotnet-aspnet/
-# https://hub.docker.com/_/microsoft-dotnet
+# pick a platform specific tag from the aspnet / dotnet Docker Hub repos 
+# - see their tag listings to guide your decision 
+# - https://hub.docker.com/_/microsoft-dotnet-aspnet/
+# - https://hub.docker.com/_/microsoft-dotnet
 #
 # for the demo in the course recording:
   # want Nano Server base image
@@ -104,23 +110,13 @@ docker container run --rm -i -t `
 # for fun, look at base images (not with .NET layers):
   docker manifest inspect mcr.microsoft.com/windows/nanoserver:ltsc2022 | jq -C
   docker manifest inspect mcr.microsoft.com/windows/servercore:ltsc2022 | jq -C
-  # strange - these are not multi-arch but they are returning manifest lists of the single supported platform... 
 
 # NOW, update tag used in runtime-env: 
 # FROM .../aspnet:6.0-nanoserver-ltsc2022
 
 # rebuild image:
-  # optional: add tag to specify target architecture
+#   optional: add tag to specify target architecture
 docker build --tag myapi:nanoserver-ltsc2022 .
-
-docker image ls # separate images now
-# that's the value of specificity in tag
-# - users know exactly what they're getting 
-# Notice, there's no new intermediate build b/c for the build-env we still leave the tag at 6.0 and it runs w/ hyper-v isolation to build the app which is fine, we only care about runtime using process isolation for now
-  # so the cache will still be hit for the build-env! 
-  # big value prop!
-  # FYI, you can specify isolation on a build
-    # perhaps that is a way to speed up your builds
 
 # run w/ process isolation successfully
 docker container run --rm -i -t `
@@ -136,8 +132,8 @@ curl localhost:8081/weatherforecast # w00t!
 get-process *dotnet*
   get-process *dotnet* | fl *
     # look at CommandLine property
-# (repeat get-process calls - no Running as Admin)
-  # most details in fl * will be missing if not an Admin 
+# repeat get-process calls - but not running as admin
+  # most details in fl * will be missing if not an admin 
 # awesome! (some degree of isolating non-privileged processes on host too)
 
 # now! more isolation observation!
