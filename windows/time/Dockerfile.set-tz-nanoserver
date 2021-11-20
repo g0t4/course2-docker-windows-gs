@@ -12,5 +12,15 @@ CMD hostname; (get-timezone).DisplayName; (get-date).ToShortTimeString();
 
 
 
-# NOTE:  this is broken intentionally for a demo of base images, it's important to factor into what is in any given base image when selecting which base to use.
-# - Even layers on top of the base layer can add additional framework functionality, like .NET 6/5 that make them a better choice if you are building a .NET 6 app and want a base layer with the runtime and/or build tools installed depending on use case. So this is like selecting a layer above the bottom most layers.
+# NOTE:  this is broken intentionally for a demo of base image selection
+# - consider what's in a base image when selecting a base image to use
+# - in this case powershell isn't available so the demo breaks
+#
+# - Keep in mind,
+#   - layers on top of the base layer add additional framework functionality
+#   - i.e. .NET 6/5 
+#   - often a better choice if you are building a .NET 6 app
+#     - otherwise you'd need to install the .NET runtime yourself!
+#       - why do that when someone else has!?
+#   - TLDR base layer can be any layer you build on top of
+#     - not just the core windows base images
