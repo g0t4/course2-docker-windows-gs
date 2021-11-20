@@ -28,6 +28,7 @@ wsl --set-default-version 2
 winget install -e --id Docker.DockerDesktop
 
 # Windows Terminal (stable)
+# https://devblogs.microsoft.com/commandline/
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id Microsoft.WindowsTerminalPreview
 

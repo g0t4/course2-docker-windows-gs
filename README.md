@@ -9,5 +9,6 @@
 - Modules
   - [Linux Containers](./linux-containers/README.md)
 
+- [wes-wsl-distro](./wes-wsl-distro) - my initial WSL2 distro setup
 - [Tools](./TOOLS.md) - some of the tools used in the course - how to setup/install
 - [docker format output](./docker.format.md) - overriding output format for several docker CLI commands
