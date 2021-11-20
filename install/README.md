@@ -47,4 +47,7 @@ winget install -e --id Microsoft.VisualStudio.2022.Community-Preview
 # Browser
 winget install -e --id BraveSoftware.BraveBrowser
 
+# bat & jq (windows side)
+choco install -y jq bat
+
 ```
