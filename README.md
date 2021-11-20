@@ -1,6 +1,4 @@
-# course2-docker-windows-gs
-
-> 2nd Edition - Docker Getting Started on Windows Course!
+# 2nd Edition - Docker Getting Started on Windows Course!
 
 ## Modules
 
