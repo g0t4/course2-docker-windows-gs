@@ -1,11 +1,10 @@
 # course2-docker-windows-gs
 
-> WIP refresh of Docker Getting Started on Windows Course!
+> 2nd Edition - Docker Getting Started on Windows Course!
 
 > FYI I am in the process of cleaning up and providing additional comments/notes/links to help you out, will be done by end of week.
 
-> That said, most cleanup is already done. I will remove this warning when I complete all cleanup
-
 ## Layout
 
-[Tools](./TOOLS.md)
+- [Tools](./TOOLS.md) - some of the tools used in the course - how to setup/install
+- [docker format output](./docker.format.md) - overriding output format for several docker CLI commands

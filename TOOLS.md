@@ -1,6 +1,6 @@
 # Tools
 
-## WSL2
+## WSL2 pre-requisites
 
 If you want to install WSL2 before DDfW, use the following commands. Otherwise, DDfW will enable the appropriate features but will still (currently) depend on Windows Update for the latest kernel.
 
@@ -37,10 +37,8 @@ winget install -e --id Microsoft.PowerShell.Preview
 
 # Visual Studio Code
 winget install -e --id Microsoft.VisualStudioCode
-# and/or:
 winget install -e --id Microsoft.VisualStudioCode.Insiders
-
-# Visual Studio
+# or, Visual Studio
 winget install -e --id Microsoft.VisualStudio.2022.Community-Preview
 
 # Browser
